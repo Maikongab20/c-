@@ -23,10 +23,10 @@ int main(){
                 while(pos< 5 &&  id[pos] != 0)
                 pos++;
 
-                if(i<5)
-                    id[pos] = i
+                if(i<5){
+                    id[pos] = i;
                     printf("digite o nome :\n");
-                    fflush(stdim);
+                    fflush(stdin);
                     scanf("%s",&funcionario[pos]);
                     printf("\n");
                     printf("digite o seu salario");
@@ -35,10 +35,11 @@ int main(){
                     scanf("%d",&anosImpre[pos]);
                     printf("cadrastrar mais usuarios");
                     scanf("%d",&codigo);
-                     else{
-                         printf("sem espaso para cadrastrar mais usuario \n");
-                         codigo = 0 ;
-                     }
+                }
+                else{
+                    printf("sem espaso para cadrastrar mais usuario \n");
+                    codigo = 0 ;
+                    }
         
             }while(codigo != 0);
             pos = 0;
@@ -52,16 +53,21 @@ int main(){
              while(pos< 5 &&  funcionario[pos] != exclu)
                 pos++;
 
-                for(i =5; i>5; i--){
-                    funcionario[i] = funcionario[i - 1];
-                    salario[i] = salario[i - 1];
-                    id[i] = id[i - 1];
-                    anosImpre[i] = anosImpre[i - 1];
-                }
-        }
+                if(pos < 5){
+                    for(i =pos; i>5; i--){
+                        funcionario[i] = funcionario[i - 1];
+                        salario[i] = salario[i - 1];
+                        id[i] = id[i - 1];
+                        anosImpre[i] = anosImpre[i - 1];
+                    }
+                } 
+                else
+                    printf("funcionario não encontrado");
+            
+        } break;
         
         default:
-            break;
+            printf("opcao invalida"); break;
         }
 
     }while(codigo != 0);
