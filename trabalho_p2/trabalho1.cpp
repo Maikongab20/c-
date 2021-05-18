@@ -2,9 +2,9 @@
 #include <string.h>
 
 int main(){
-    char funcionario[5][10],exclu;
+    char funcionario[5][10];
     float salario[5];
-    int id[5],anosImpre[5],i = 0,pos = 0,codigo;
+    int id[5],anosImpre[5],i = 0,pos = 0,codigo,exclu,j;
 
     do{
         printf("digite a opcao desajada");
@@ -20,10 +20,8 @@ int main(){
             printf("cadrastro");
             printf("\n");
             do{
-                while(pos< 5 &&  id[pos] != 0)
-                pos++;
-
-                if(i<5){
+                
+                if(i<4){
                     id[pos] = i;
                     printf("digite o nome :\n");
                     fflush(stdin);
@@ -33,7 +31,8 @@ int main(){
                     scanf("%f",&salario[pos]);
                     printf("digite os anos de empresa");
                     scanf("%d",&anosImpre[pos]);
-                    printf("cadrastrar mais usuarios");
+                    i ++;
+                    printf("cadrastrar mais usuarios digite 1 para sair digite 0");
                     scanf("%d",&codigo);
                 }
                 else{
@@ -44,17 +43,35 @@ int main(){
             }while(codigo != 0);
             pos = 0;
 
+            for(j=0; j<5; j++){
+                while(pos<5 && id[i]> id[pos])
+                pos ++;
+
+                for(i=5; i>pos; i--){
+                        funcionario[i] = funcionario[i - 1];
+                        salario[i] = salario[i - 1];
+                        id[i] = id[i - 1];
+                        anosImpre[i] = anosImpre[i - 1];
+                }
+                 funcionario[i] = funcionario[i - 1];
+                 salario[i] = salario[i - 1];
+                 id[i] = id[i - 1];
+                 anosImpre[i] = anosImpre[i - 1];
+            }
+
         }break;
 
         case 2:{
-            printf("digite o nome do funcionario a ser excluido : \n");
+            printf("Sistema de excluir usuario");
+            printf("\n");
+            printf("digite o id do funcionario a ser excluido : \n");
             scanf("%d",&exclu);
 
-             while(pos< 5 &&  funcionario[pos] != exclu)
+             while(pos< 5 &&  id[pos] != exclu)
                 pos++;
 
                 if(pos < 5){
-                    for(i =pos; i>5; i--){
+                    for(i =5; i>pos; i--){
                         funcionario[i] = funcionario[i - 1];
                         salario[i] = salario[i - 1];
                         id[i] = id[i - 1];
