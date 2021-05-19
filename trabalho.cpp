@@ -81,7 +81,7 @@ int main(){
                     TL--;
                 } 
                 else
-                    printf("funcionario n√£o encontrado");
+                    printf("funcionario n„o encontrado");
             
         } break;
         
@@ -90,31 +90,6 @@ int main(){
         }
 
     }while(codigo != 0);
-    printf("Relatorio 1 funcionario sem aulmento");
-    printf("\n");
-    for(i=0; i<TL; i++){
-        if(anosImpre[i]=> 5 && salario[i]<=200){
-            printf("%d: %s",id[i],funcionario[i]);
-        }
-    }
-    for(i=0; i<TL; i++){
-        if(salario[i]<200 && anosImpre[i]>5){
-            salario[i] = salario[i]* 1.35
-            
-        }
-        else
-            if(anosImpre[i] > 5 && salario[i]> 5){
-                salario[i]= salario[i] * 1.25;
-            }
-            else
-                if(salario[i]< 200 && anosImpre[i] < 5){
-                    salario[i] = salario[i]*1.15
-                }
-        
-        printf("%d %s novo salario= %.2f",id[i],funcionario[i],salario[i]);
-    }
-
-
 
 
 }
