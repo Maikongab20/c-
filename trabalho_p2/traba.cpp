@@ -8,11 +8,10 @@ int main(){
     int id[TF],anosImpre[TF],i,pos = 0,codigo,exclu,TL =0;
 
     do{
-        printf("digite a opcao desajada");
-        printf("\n");
-        printf("1 para cadrastar");
-        printf("2 para excluir");
-        printf("0 para sair");
+        printf("digite a opcao desajada\n");
+        printf("1 para cadrastar\n");
+        printf("2 para excluir\n");
+        printf("0 para sair\n");
         scanf("%d",&codigo);
 
         switch (codigo)
@@ -22,49 +21,41 @@ int main(){
             printf("\n");
             do{
                 
-                if(TL<4){
-                    id[TL] = i;
-                    printf("digite o nome :\n");
-                    fflush(stdin);
-                    scanf("%s",&funcionario[TL]);
-                    printf("\n");
-                    printf("digite o seu salario");
-                    scanf("%f",&salario[TL]);
-                    printf("digite os anos de empresa");
-                    scanf("%d",&anosImpre[TL]);
-                    TL ++;
-                    printf("cadrastrar mais usuarios digite 1 para sair digite 0");
-                    scanf("%d",&codigo);
+               printf("Digite o cod para cadastrar:\n");
+                scanf("%d",&codigo);
+                //busca
+                pos=0;
+                while(pos<TL && codigo>id[pos])
+                    pos++;
+
+                //remaneja para inserir
+                for(i=TL; i>pos; i--)
+                {
+                    id[i]=id[i-1];
+                    strcpy(funcionario[i],funcionario[i-1]);
+                    salario[i]=salario[i-1];
+                    anosImpre[i]=anosImpre[i-1];
                 }
-                else{
-                    printf("sem espaso para cadrastrar mais usuario \n");
-                    codigo = 0 ;
-                    }
+                //insere
+                id[pos]=codigo;
+                //le os demais campos
+                printf("Nome do funcionario:\n");
+                fflush(stdin);
+                gets(funcionario[pos]);
+                printf("Salario:\n");
+                scanf("%f",&salario[pos]);
+                printf("Anos na empresa:\n");
+                scanf("%d",&anosImpre[pos]);
+                TL++;
+                printf("cadrastrar mais funcionarios 1 para sair 0");
+                scanf("%d",&codigo);
+
         
             }while(codigo != 0);
-            pos = 0;
-
-            for(i=0; i<TL; i++){
-                while(pos<TL && id[i]> id[pos])
-                pos ++;
-
-                for(i=TL; i>pos; i--){
-                        funcionario[i] = funcionario[i - 1];
-                        salario[i] = salario[i - 1];
-                        id[i] = id[i - 1];
-                        anosImpre[i] = anosImpre[i - 1];
-                }
-                 funcionario[i] = funcionario[i - 1];
-                 salario[i] = salario[i - 1];
-                 id[i] = id[i - 1];
-                 anosImpre[i] = anosImpre[i - 1];
-            }
-
         }break;
 
         case 2:{
-            printf("Sistema de excluir usuario");
-            printf("\n");
+            printf("Sistema de excluir usuario\n");
             printf("digite o id do funcionario a ser excluido : \n");
             scanf("%d",&exclu);
 
@@ -73,7 +64,7 @@ int main(){
 
                 if(pos < TL){
                     for(i =TL; i>pos; i--){
-                        funcionario[i] = funcionario[i - 1];
+                        strcpy(funcionario[i],funcionario[i-1]);
                         salario[i] = salario[i - 1];
                         id[i] = id[i - 1];
                         anosImpre[i] = anosImpre[i - 1];
@@ -90,13 +81,16 @@ int main(){
         }
 
     }while(codigo != 0);
-    printf("Relatorio 1 funcionario sem aulmento");
+
+
+    printf("Relatorio 1 funcionario sem almento");
     printf("\n");
     for(i=0; i<TL; i++){
         if(anosImpre[i]>= 5 && salario[i]<=200){
             printf("%d: %s",id[i],funcionario[i]);
         }
     }
+     printf("Relatorio 2 funcionario com almento");
     for(i=0; i<TL; i++){
         if(salario[i]<200 && anosImpre[i]>5){
             salario[i] = salario[i]* 1.35;
@@ -113,8 +107,4 @@ int main(){
         
         printf("%d %s novo salario= %.2f",id[i],funcionario[i],salario[i]);
     }
-
-
-
-
 }
