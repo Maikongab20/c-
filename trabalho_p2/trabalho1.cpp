@@ -5,7 +5,7 @@
 int main(){
     char funcionario[TF][10];
     float salario[TF];
-    int id[TF],anosImpre[TF],i,pos = 0,codigo,exclu,TL =0;
+    int id[TF],anosImpre[TF],i,pos = 0,codigo,exclu,TL =0,cp;
 
     do{
         printf("digite a opcao desajada\n");
@@ -23,12 +23,11 @@ int main(){
                 
                printf("Digite o cod para cadastrar:\n");
                 scanf("%d",&codigo);
-                //busca
+                
                 pos=0;
                 while(pos<TL && codigo>id[pos])
                     pos++;
-
-                //remaneja para inserir
+                    
                 for(i=TL; i>pos; i--)
                 {
                     id[i]=id[i-1];
@@ -36,9 +35,9 @@ int main(){
                     salario[i]=salario[i-1];
                     anosImpre[i]=anosImpre[i-1];
                 }
-                //insere
+                
                 id[pos]=codigo;
-                //le os demais campos
+                
                 printf("Nome do funcionario:\n");
                 fflush(stdin);
                 gets(funcionario[pos]);
@@ -48,10 +47,10 @@ int main(){
                 scanf("%d",&anosImpre[pos]);
                 TL++;
                 printf("cadrastrar mais funcionarios 1 para sair 0");
-                scanf("%d",&codigo);
+                scanf("%d",&cp);
 
         
-            }while(codigo != 0);
+            }while(cp != 0);
         }break;
 
         case 2:{
@@ -82,7 +81,6 @@ int main(){
 
     }while(codigo != 0);
 
-
     printf("Relatorio 1 funcionario sem almento");
     printf("\n");
     for(i=0; i<TL; i++){
@@ -94,7 +92,6 @@ int main(){
     for(i=0; i<TL; i++){
         if(salario[i]<200 && anosImpre[i]>5){
             salario[i] = salario[i]* 1.35;
-            
         }
         else
             if(anosImpre[i] > 5 && salario[i]> 5){
